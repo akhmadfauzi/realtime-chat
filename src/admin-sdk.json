@@ -1,0 +1,12 @@
+{
+  "type": "service_account",
+  "project_id": "amartha-chat-app-test",
+  "private_key_id": "5dd9a92d1c49d72b1fddc4dd81b64603f3956ad8",
+  "private_key": "-----BEGIN PRIVATE KEY-----\nMIIEvQIBADANBgkqhkiG9w0BAQEFAASCBKcwggSjAgEAAoIBAQC1moT9myBjg8Cg\nSDLrMofpMM6NpAkYA6UGMQ8lRkG9Oxa2TDEEcwEs2vz5Ru0A/q6fkj4NeiWayKeo\nwipgx0m+j6bqRC2zJAYdQ8ctfWTIyOtnfW35jNy1XYNqMhkhxVlI96xCp0ociZQ/\n8KHnZlaDmuFOME0rxXUFcYGODUR+ZDOoQA6x4SpcejJygwUE6LfEuSJZE/fKmYJW\nfIn7JgnsJMvIM1fuJf4lmv4vVhrpB9QdWkjcgYsIKAMZoIamHG7df5xst16QcuhE\ntcAH8/q4RcYmgqOifvhYDh2E1cePit5W9VhFxvOMxaKWkLhl/8Pq/nIniixU9MJd\nasDsqY/hAgMBAAECggEAKZkvhXgXPzRa11wybbWxdDT922wLuTh8gKKUOZGSVWpH\nlZJ2V/KP/lpbQC6C84tjLKIvHJ8yJfZ4kSuI0YpU1hXJwjfD0BkcXW+9HCpw/50m\nbxpIKrWdiN3W0GiRYS73eMNi7hGr5EWPc+YG8B59CsBbg7GEu9YLLCgH6SYY3mpq\nLMCSDsXBPQCOM4pNfWf6X/MJuDMnLO9JPRRV2ujqE1Mg/PbjiatzPpgmokHUqYMj\n70z9fDVI/vhm/pF6KIAl7/bct03enOsUR/ai9/TCPoyw5Xc6Xn3ax7xXnCCAhkhA\nD9zx6FN31AsL3FnWLjOrryyT/lAkEx7zIoeYr+iawQKBgQDvAmgfkxSTDcPe0a4B\n9Do0elsPyc5EakKBPW+5UyCwKBqw9qQ0E1lh9Oi9FBZG4v6MCym9l9Iz4SXXavSv\nCS7Pz19F9xs343/E27NMm7H6CS4DtY+S3LS9FiAbhj1Rnmk/KCAYk9laKBUoln/j\nmkxuTHt91vcY9xFEGCAcTOKy9QKBgQDCg2rzkLdx8szIM3q/8w13w45oCtuSxPqb\nqQTaOAmhlstYI8G+r8ZRqvFUXpEWVkHN/3vWNoSNCRuUircnLstnzSy9oJuSm5hT\n22tyj2RGnPdvuzr2wSXRkeOmlRHMhhflTZRZUjP9z1L1nGEBZ9/pujOAX4K7dDXs\nVvrqnkENvQKBgGDict7Juj9aBxodmRHFtIptRtiBj5GAGXFWPCG9prSBrUAq2qkZ\nZtQkeOucZuNZRKH0LHlkP5s0GyjVfFYvvMAUaaRs5KWlHLfp7yaQvnaCnhp20LpR\nqRo1C9LceaLKOhOV6lzMIgE/2kPXrgPPGkhjzHNYXlXKYT9fIDUYnZS5AoGAa4rR\nNPzMD9oX0pBzy3CL/61FLMzj/U+e5zUZk7TrzkVbA84xLkZstXZ3mxf1y43BMC2S\nwCrAOmHQt93ByY4bs7ZCiE0l9nbET4i+7UXOQSRDwaiYvxim2il43f8JKjTxPTwZ\nSxEh4bAgw97D200dBVKHavBjjVSBA7xLWjBI81kCgYEAmYHwPInEPEAao5IJ/J+v\nj2qYQxU+tc6NVNN3fSzmvSQuxmS9/AZ0ML+tYrXCSxJVHyMew/ndywvqebxYvkVS\nxUCaYFG6dcGvuSxHCIg/jmISQNb5vFbA6GF4u5AdPJOEvCkaF6aZP71TGRRtRr1J\ncrp7FY8jMtsosviMhp9XL+w=\n-----END PRIVATE KEY-----\n",
+  "client_email": "firebase-adminsdk-erl6q@amartha-chat-app-test.iam.gserviceaccount.com",
+  "client_id": "103089445539367574293",
+  "auth_uri": "https://accounts.google.com/o/oauth2/auth",
+  "token_uri": "https://oauth2.googleapis.com/token",
+  "auth_provider_x509_cert_url": "https://www.googleapis.com/oauth2/v1/certs",
+  "client_x509_cert_url": "https://www.googleapis.com/robot/v1/metadata/x509/firebase-adminsdk-erl6q%40amartha-chat-app-test.iam.gserviceaccount.com"
+}
