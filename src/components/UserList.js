@@ -1,18 +1,15 @@
-import React, { Component } from 'react'
-import PropTypes from 'prop-types'
-import { connect } from 'react-redux'
+import React, { Component } from 'react';
+import { connect } from 'react-redux';
 import { UserListItem } from './UserListItem';
 import '../styles/user-list.scss';
 export class UserList extends Component {
-    static propTypes = {
-        prop: PropTypes
-    }
+    
 
     userList(){
-        let users = [];
-        for (let i = 0; i <= 10; i++) {
-            users = [...users, (<UserListItem></UserListItem>)];
-        }
+        let users = ["Barry Fleming","Ikra Carrillo","Leanna Orr","Hammad Garza","Zarah Burrows","Harlee Gallagher","Bert Brown","Felicity Herrera","Hailie Wise","Andreas Wilkinson"];
+        users = users.map((v,i)=>{
+            return (<UserListItem key={i} id={i} name={v}></UserListItem>)
+        })
 
         return users;
     }

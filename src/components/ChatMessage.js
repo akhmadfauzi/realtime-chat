@@ -1,12 +1,9 @@
 import React, { Component } from 'react';
-import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import '../styles/chat-message.scss';
 
 export class ChatMessage extends Component {
-    static propTypes = {
-        prop: PropTypes
-    }
+   
 
     render() {
         const sender = this.props.isSender ? "sender" : "receiver";

@@ -1,18 +1,16 @@
-import React, { Component } from 'react'
-import PropTypes from 'prop-types'
-import { connect } from 'react-redux'
+import React, { Component } from 'react';
+import { connect } from 'react-redux';
 import UserProfile from './UserProfile';
 import '../styles/user-list-item.scss';
+import { Link } from "react-router-dom";
 
 export class UserListItem extends Component {
-    static propTypes = {
-        prop: PropTypes
-    }
+    
 
     render() {
         return (
             <div className="user-li">
-                <UserProfile></UserProfile>
+                <Link to={`/conversation/${this.props.id}`}><UserProfile name={this.props.name}></UserProfile></Link>
             </div>
         )
     }

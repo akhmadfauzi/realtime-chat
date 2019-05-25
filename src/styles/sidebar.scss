@@ -8,6 +8,11 @@
   position: absolute;
   flex-direction: column;
 
+  & .profile{
+      padding: 5px;
+      border-radius: 5px;
+  }
+
   &__header {
     height: 6%;
     flex: 0 1 auto;

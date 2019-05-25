@@ -6,8 +6,8 @@ import * as serviceWorker from './serviceWorker';
 import { initializedFirebase } from './components/push-notification';
 import { Provider } from 'react-redux';
 import { applyMiddleware, createStore, compose } from 'redux';
-
-const store = createStore(()=>({}));
+import { BrowserRouter as Router, Route, Link } from "react-router-dom";
+const store = createStore(() => ({}));
 // Disable for UI construction
 // if ('serviceWorker' in navigator) {
 // 	navigator.serviceWorker
@@ -19,9 +19,11 @@ const store = createStore(()=>({}));
 // }
 
 ReactDOM.render(
-    <Provider store={store}>
-        <App />
-    </Provider>,
+    <Router>
+        <Provider store={store}>
+            <App />
+        </Provider>
+    </Router>,
     document.getElementById('root'));
 
 // Disable for UI construction

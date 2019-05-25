@@ -1,33 +1,34 @@
 import React, { Component } from 'react';
-import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import '../styles/chat-room.scss';
 import ChatMessage from './ChatMessage';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import UserProfile from '../components/UserProfile';
 
 export class ChatRoom extends Component {
-    static propTypes = {
-        prop: PropTypes
-    }
 
     onInputHandler(e) {
         const target = e.target;
-        console.log(target.scrollHeight,target.scrollWidth);
         if (target.value !== '') {
             target.style.height = '20px';
             target.setAttribute('style', 'height:' + target.scrollHeight + 'px !important;')
-        }else{
+        } else {
             target.style.height = 'auto';
             target.setAttribute('style', 'height:20px !important;')
         }
     }
 
+    getName(id){
+        let users = ["Barry Fleming","Ikra Carrillo","Leanna Orr","Hammad Garza","Zarah Burrows","Harlee Gallagher","Bert Brown","Felicity Herrera","Hailie Wise","Andreas Wilkinson"];
+        return users[id];
+    }
+
     render() {
         return (
             <div className="chat-room">
-                {/* <div className="chat-room__header">
-                   
-                </div> */}
+                <div className="chat-room__header">
+                    <UserProfile name={this.getName(this.props.match.params.id)}></UserProfile>
+                </div>
                 <div className="chat-room__body">
                     <ChatMessage isSender={false} text="lorem ipsum"></ChatMessage>
                     <ChatMessage isSender={true} text="lorem ipsum"></ChatMessage>
