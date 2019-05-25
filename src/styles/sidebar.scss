@@ -1,0 +1,15 @@
+@import "media-queries";
+
+.sidebar{
+    flex: 0 1 80%;
+    background: yellow;
+    display: none;
+    position: absolute;
+    top: 50px;
+
+    &-collapse{
+        display: none;    
+        width: 80%;
+    }
+}
+

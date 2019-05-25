@@ -1,0 +1,31 @@
+@import "../styles/colors";
+@import "../styles/media-queries";
+
+.chat-message {
+  display: flex;
+
+  flex: 0 0 auto;
+  
+
+  &__content {
+    background: $primaryChat;
+    border-radius: 5px;
+    padding: 10px;
+    margin: 5px;
+    max-width: 80%;
+  }
+}
+
+.sender {
+  display: flex;
+  justify-content: flex-end;
+  flex: 0 0 auto;
+}
+
+.receiver {
+  display: flex;
+  flex: 0 0 auto;
+  &-bg {
+    background: $secondaryChat;
+  }
+}

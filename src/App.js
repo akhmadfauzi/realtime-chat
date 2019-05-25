@@ -1,10 +1,22 @@
 import React from 'react';
-import './app.scss';
+import './styles/app.scss';
+import Header from './containers/Header';
+import Sidebar from './containers/Sidebar';
+import Content from './containers/Content';
+import Footer from './containers/Footer';
+import { library } from '@fortawesome/fontawesome-svg-core';
+import { fab } from '@fortawesome/free-brands-svg-icons'
+import { faCheckSquare, faCoffee,faBars, faPaperPlane } from '@fortawesome/free-solid-svg-icons'
+
+library.add(fab, faCheckSquare, faCoffee,faBars,faPaperPlane)
 
 function App() {
   return (
     <div className="app">
-      App
+      <Header></Header>
+      <Sidebar></Sidebar>
+      <Content></Content>
+      <Footer></Footer>
     </div>
   );
 }

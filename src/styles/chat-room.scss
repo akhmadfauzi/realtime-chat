@@ -1,0 +1,112 @@
+@import "../styles/colors";
+@import "../styles/media-queries";
+
+.chat-room {
+  display: flex;
+  width: 100%;
+  flex-direction: column;
+
+  &__header {
+    display: flex;
+    flex: 1 1 50px;
+    height: 10%;
+    width: 100%;
+  }
+
+  &__body {
+    display: flex;
+    flex-direction: column;
+    flex: 1 1 100%;
+    max-height: 890%;
+    height: auto;
+    overflow-y: scroll;
+  }
+
+  &__footer {
+    display: flex;
+    flex: 0 0 auto;
+    max-height: 20%;
+    height: auto;
+  }
+}
+
+.profile {
+  display: flex;
+  padding: 10px;
+  flex: 1 1 auto;
+
+  &__image {
+    flex: 0 1 30px;
+    height: 30px;
+    width: 30px;
+    border-radius: 30px;
+    overflow: hidden;
+  }
+
+  &__detail {
+    margin-left: 10px;
+  }
+}
+
+.detail {
+  display: flex;
+  flex-direction: column;
+  height: 30px;
+  &__name {
+    line-height: 10px;
+    font-size: 0.9em;
+  }
+
+  &__status {
+    margin-top: 3px;
+    font-size: 0.8em;
+    & span {
+      display: inline-block;
+      background: green;
+      width: 10px;
+      height: 10px;
+      border-radius: 10px;
+    }
+  }
+}
+
+.text-editor{
+    display: flex;
+    width: 100%;
+    overflow: hidden;
+    background: #ccc;
+    &__left{
+        display: flex;
+        flex: 0 0 auto;
+        width: 80%;
+    }
+
+    &__right{
+        display: flex;
+        flex: 0 0 auto;
+        width: 20%;
+        justify-content: center;
+        align-items: center;
+
+        button{
+            width: 100%;
+            border:none;
+            background: $primary;
+            color:$primaryFont;
+            font-size: 1em;
+            height: 40px;
+            width: 40px;
+            border-radius: 50px;
+        }
+    }
+
+    textarea{
+        font-size: 1.2em;
+        width: 90%;
+        border-radius: 5px;
+        margin: 2.5%;
+        max-height: 70px;
+        padding: 2.5%;
+        height: 20px;
+    }
+}

@@ -65,11 +65,13 @@ const initializedMessaging = () => {
 		});
 		// [END get_token]
 	}
+
 	function showToken(currentToken) {
 		// Show token in console and UI.
 		var tokenElement = document.querySelector('#token');
 		tokenElement.textContent = currentToken;
 	}
+	
 	// Send the Instance ID token your application server, so that it can:
 	// - send messages back to this app
 	// - subscribe/unsubscribe the token from topics
