@@ -1,8 +1,13 @@
 import firebase from 'firebase/app';
 import 'firebase/messaging';
+import 'firebase/database';
 import { FIREBASE_CONFIG, VAPID_KEY } from '../config';
 
+export const initializeDatabase = ()=>{
+	firebase.database();
+}
 const initializedMessaging = () => {
+	
 	const messaging = firebase.messaging();
 	messaging.usePublicVapidKey(VAPID_KEY);
 
@@ -168,7 +173,7 @@ const initializedMessaging = () => {
 export const initializedFirebase = () => {
 	firebase.initializeApp(FIREBASE_CONFIG);
 	initializedMessaging();
-
+	initializeDatabase();
 
 }
 

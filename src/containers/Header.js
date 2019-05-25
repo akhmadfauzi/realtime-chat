@@ -5,7 +5,7 @@ export default function Header() {
     return (
         <header className="header">
             <div className="header-brand">
-                Chattt
+                Chattt | 
                  </div>
             <div className="header-toggle"><button><FontAwesomeIcon icon="bars" /></button></div>
         </header>
