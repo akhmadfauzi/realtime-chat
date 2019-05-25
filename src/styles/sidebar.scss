@@ -1,15 +1,115 @@
 @import "media-queries";
+@import "colors";
 
-.sidebar{
-    flex: 0 1 80%;
-    background: yellow;
-    display: none;
-    position: absolute;
-    top: 50px;
+.sidebar {
+  flex: 0 1 80%;
+  background: $secondary;
+  display: flex;
+  position: absolute;
+  flex-direction: column;
 
-    &-collapse{
-        display: none;    
-        width: 80%;
+  &__header {
+    height: 6%;
+    flex: 0 1 auto;
+    background: #ccc;
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+
+    & .close-button {
+      width: 35px;
+      height: 35px;
+      background: #fff;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      margin-right: 10px;
+      border-radius: 5px;
+      font-size: 1.5em;
+      color: #ccc;
     }
+  }
+  &__body {
+    flex: 1 1 auto;
+    height: 88%;
+    display: flex;
+  }
+  &__footer {
+    flex: 1 1 auto;
+    height: 6%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+
+  &-collapse {
+    display: none;
+    width: 100%;
+    height: 100%;
+    z-index: 100;
+  }
 }
 
+@include tablet {
+  .sidebar {
+    margin: 10px;
+    flex: 0 1 200px;
+    background: $secondaryChat;
+    display: flex;
+    position: relative;
+    flex-direction: column;
+    border-radius: 7px;
+    overflow: hidden;
+    height: auto;
+
+    &__header {
+      display: none;
+    }
+    &__body {
+      height: auto;
+    }
+    &__footer {
+      flex: 0 0 auto;
+      height: 50px;
+    }
+
+    &-collapse {
+      //   display: none;
+      width: 100%;
+      height: auto;
+      z-index: 100;
+    }
+  }
+}
+
+@include desktop {
+  .sidebar {
+    margin: .5%;
+    flex: 0 1 14%;
+    background: $secondaryChat;
+    display: flex;
+    position: relative;
+    flex-direction: column;
+    border-radius: 7px;
+    overflow: hidden;
+    height: 89%;
+
+    &__header {
+      display: none;
+    }
+    &__body {
+      height: auto;
+    }
+    &__footer {
+      flex: 0 0 auto;
+      height: 50px;
+    }
+
+    &-collapse {
+        // display: n;
+      width: 15%;
+      height: auto;
+      z-index: 100;
+    }
+  }
+}

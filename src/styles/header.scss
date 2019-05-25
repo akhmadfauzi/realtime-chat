@@ -4,7 +4,7 @@
 .header {
   flex: 1 1 100%;
   background: $primary;
-  height: 10%;
+  height: 6%;
 
   display: flex;
   justify-content: center;
@@ -22,19 +22,80 @@
   &-toggle {
     display: flex;
     justify-content: flex-end ;
-    align-items: flex-end;
+    align-items: center;
     flex: 1 1 auto;
     padding-right: 10px;
-
+    height: 100%;
+    position: relative;
     & button{
-        height: 35px;
+        height: 80%;
         width: 35px;
-        line-height: 35px;
         border: none;
         border-radius: 5px;
         background: $secondary;
         color: $primaryBG;
 
+    }
+  }
+}
+
+.profile {
+  display: flex;
+  flex: 1 1 auto;
+
+  &__image {
+    flex: 0 1 30px;
+    height: 30px;
+    width: 30px;
+    border-radius: 30px;
+    overflow: hidden;
+  }
+
+  &__detail {
+    margin-left: 10px;
+  }
+}
+
+.detail {
+  display: flex;
+  flex-direction: column;
+  height: 30px;
+  &__name {
+    line-height: 10px;
+    font-size: 0.9em;
+  }
+
+  &__status {
+    margin-top: 3px;
+    font-size: 0.8em;
+    & span {
+      display: inline-block;
+      background: green;
+      width: 10px;
+      height: 10px;
+      border-radius: 10px;
+    }
+  }
+}
+
+@include tablet {
+  .header {
+    flex: 1 1 100%;
+    background: $primary;
+    height: 50px;
+    &-toggle {
+      display: none;
+    }
+  }
+
+}
+@include desktop {
+  .header {
+    flex: 1 1 100%;
+    background: $primary;
+    height: 5%;
+    &-toggle {
+      display: none;
     }
   }
 }

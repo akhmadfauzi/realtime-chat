@@ -25,18 +25,9 @@ export class ChatRoom extends Component {
     render() {
         return (
             <div className="chat-room">
-                <div className="chat-room__header">
-                    <div className="profile">
-                        <div className="profile__image"><img src="http://placekitten.com/32/32" alt="user" /></div>
-                        <div className="profile__detail">
-                            <div className="detail">
-                                <div className="detail__name">John Doe</div>
-                                <div className="detail__status"><span></span> online</div>
-                            </div>
-                        </div>
-
-                    </div>
-                </div>
+                {/* <div className="chat-room__header">
+                   
+                </div> */}
                 <div className="chat-room__body">
                     <ChatMessage isSender={false} text="lorem ipsum"></ChatMessage>
                     <ChatMessage isSender={true} text="lorem ipsum"></ChatMessage>
@@ -51,7 +42,6 @@ export class ChatRoom extends Component {
                     <ChatMessage isSender={false} text="Lorem ipsum dolor sit amet consectetur adipisicing elit."></ChatMessage>
                     <ChatMessage isSender={true} text="lorem ipsum"></ChatMessage>
                     <ChatMessage isSender={false} text="Lorem ipsum dolor sit amet consectetur adipisicing elit."></ChatMessage>
-
                 </div>
                 <div className="chat-room__footer">
                     <div className="text-editor">

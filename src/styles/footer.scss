@@ -1,9 +1,28 @@
 @import "media-queries";
 @import "colors";
 
-.footer{
-    display: flex;
-    flex: 1 1 100%;
-    background: $primary;
-    height: 10%;
+.footer {
+  display: flex;
+  flex: 1 1 100%;
+  background: $primary;
+  height: 6%;
+  justify-content: center;
+  align-items: center;
+  color: $primaryFont;
+  font-size: 0.7em;
+
+  & span {
+    color: red;
+  }
+}
+
+@include tablet {
+  .footer {
+    height: 5%;
+  }
+}
+@include desktop {
+  .footer {
+    height: 5%;
+  }
 }

@@ -6,9 +6,9 @@ import Content from './containers/Content';
 import Footer from './containers/Footer';
 import { library } from '@fortawesome/fontawesome-svg-core';
 import { fab } from '@fortawesome/free-brands-svg-icons'
-import { faCheckSquare, faCoffee,faBars, faPaperPlane } from '@fortawesome/free-solid-svg-icons'
+import { faCheckSquare, faCoffee, faBars, faPaperPlane, faHeart, faTimes } from '@fortawesome/free-solid-svg-icons'
 
-library.add(fab, faCheckSquare, faCoffee,faBars,faPaperPlane)
+library.add(fab, faCheckSquare, faCoffee, faBars, faPaperPlane, faHeart,faTimes)
 
 function App() {
   return (

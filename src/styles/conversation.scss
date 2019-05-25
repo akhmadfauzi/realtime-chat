@@ -1,0 +1,35 @@
+@import './media-queries';
+
+.conversation {
+  display: flex;
+  width: 100%;
+  padding: 10px;
+
+  &__empty {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    justify-content: center;
+    align-items: center;
+    color: #ccc;
+    font-size: 1em;
+
+    & p {
+      margin: 0;
+    }
+  }
+}
+
+@include tablet {
+}
+@include desktop {
+  .conversation {
+    &__empty {
+    font-size: 2em;
+
+      & p {
+        margin: 0;
+      }
+    }
+  }
+}
