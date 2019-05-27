@@ -2,7 +2,8 @@ import * as act from '../actions';
 const initialState = {
     "users":null,
     "messages":null,
-    "conversations":null
+    "conversations":null,
+    "user":null
 }
 
 export default function mainReducer(state = initialState, action){
@@ -12,6 +13,14 @@ export default function mainReducer(state = initialState, action){
                 ...state,
                 "users":{
                     ...action.users
+                }
+            }
+        case act.LOGIN_SUCCESS:
+            return {
+                ...state,
+                "user":{
+                    ...state.user,
+                    ...action.user
                 }
             }
         default:

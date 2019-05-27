@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 
-export class UserProfile extends Component {
+class UserProfile extends Component {
 
     render() {
         return (
@@ -10,7 +10,7 @@ export class UserProfile extends Component {
                 <div className="profile__detail">
                     <div className="detail">
                         <div className="detail__name">{this.props.name}</div>
-                        <div className="detail__status">online</div>
+                        <div className="detail__status">{this.props.status ? `online` : `offline`}</div>
                     </div>
                 </div>
             </div>

@@ -1,0 +1,49 @@
+@import "./colors";
+
+.login {
+  display: flex;
+  flex: 1 1 auto;
+  justify-content: center;
+  align-items: center;
+
+  &__box {
+    height: 300px;
+    width: 300px;
+    
+    border-radius: 5px;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-end;
+
+    & .logo {
+      flex: 1 1 auto;
+      display: flex;
+    justify-content: center;
+    align-items: center
+      
+    }
+
+    & input[type="text"] {
+        // border-color: $secondary;
+        // border:1px solid $secondary;
+        border:none;
+        background: $secondaryBG;
+        color:#fff;
+      flex: 0 1 auto;
+      border-radius: 5px;
+      margin: 5px;
+      padding: 5px;
+      height: 30px;
+      font-size: 1.3em;
+    }
+
+    & button {
+      flex: 0 1 auto;
+      border-radius: 5px;
+
+      margin: 5px;
+      margin-bottom: 100px;
+      height: 30px;
+    }
+  }
+}

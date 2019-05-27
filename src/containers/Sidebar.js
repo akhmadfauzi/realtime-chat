@@ -1,7 +1,7 @@
 import React from 'react'
 import '../styles/sidebar.scss'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { UserList } from '../components/UserList';
+import UserList from '../components/UserList';
 
 export default function Sidebar() {
     return (

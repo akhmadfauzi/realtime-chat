@@ -10,7 +10,7 @@ export class UserListItem extends Component {
     render() {
         return (
             <div className="user-li">
-                <Link to={`/conversation/${this.props.id}`}><UserProfile name={this.props.name}></UserProfile></Link>
+                <Link to={`/conversation/${this.props.name}`}><UserProfile name={this.props.name} status={this.props.status}></UserProfile></Link>
             </div>
         )
     }
