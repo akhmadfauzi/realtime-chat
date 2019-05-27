@@ -1,13 +1,8 @@
 import React, { Component } from 'react';
-import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import '../styles/conversation.scss';
 
 export class Conversation extends Component {
-    static propTypes = {
-        prop: PropTypes
-    }
-
     render() {
         return (
             <div className="conversation">

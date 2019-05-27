@@ -3,7 +3,8 @@ const initialState = {
     "users":null,
     "messages":null,
     "conversations":null,
-    "user":null
+	"user":null,
+	"currentConversation":null
 }
 
 export default function mainReducer(state = initialState, action){
@@ -16,6 +17,7 @@ export default function mainReducer(state = initialState, action){
                 }
             }
         case act.LOGIN_SUCCESS:
+        case act.RECEIVED_LOGGED_USER:
             return {
                 ...state,
                 "user":{

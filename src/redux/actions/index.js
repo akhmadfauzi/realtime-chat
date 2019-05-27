@@ -5,6 +5,17 @@ export const requestUsers = () => ({
 	type: REQUEST_USERS
 })
 
+export const REQUEST_LOGGED_USER = 'REQUEST_LOGGED_USER';
+export const requestLoggedUser = () => ({
+	type: REQUEST_LOGGED_USER
+})
+
+export const RECEIVED_LOGGED_USER = 'RECEIVED_LOGGED_USER';
+export const receivedLoggedUser = (user) => ({
+	type: RECEIVED_LOGGED_USER,
+	user
+})
+
 export const RECEIVED_USERS = 'RECEIVED_USERS';
 export const receivedUsers = (users) => ({
 	type: RECEIVED_USERS,
@@ -20,6 +31,7 @@ export const loginSuccess = (user) => ({
 	type: LOGIN_SUCCESS,
 	user
 });
+
 export const LOGIN_FAIL = 'LOGIN_FAIL';
 export const loginFail = () => ({
 	type: LOGIN_FAIL
@@ -36,12 +48,21 @@ export const sendMessageSuccess = () => ({
 
 });
 
+export const GET_MESSAGE_ATTEMPT = 'GET_MESSAGE_ATTEMPT';
+export const getMessageAttempt = () => ({
+	type: GET_MESSAGE_ATTEMPT
+});
+
+export const GET_MESSAGE_SUCCESS = 'GET_MESSAGE_SUCCESS';
+export const getMessageSuccess = () => ({
+	type: GET_MESSAGE_SUCCESS
+});
+
 
 
 export function login(username) {
 	return function (dispatch) {
 		dispatch(loginAttempt());
-
 		return firebase.database().ref('users/' + username)
 			.once('value')
 			.then((ss) => {
@@ -57,6 +78,23 @@ export function login(username) {
 	}
 }
 
+export function fetchLoggedUser(username) {
+	return function (dispatch) {
+		dispatch(requestLoggedUser());
+
+		return firebase.database().ref('users/' + username)
+			.once('value')
+			.then((snapshot) => {
+				if (snapshot.val()) {
+					dispatch(receivedLoggedUser(snapshot.val()));
+				}
+			});
+	}
+}
+
+
+
+
 export function sendMessage(sender, text) {
 	return function (dispatch) {
 		dispatch(sendMessageAttempt());
@@ -70,6 +108,16 @@ export function sendMessage(sender, text) {
 			}, () => {
 				dispatch(sendMessageSuccess());
 			});
+	}
+}
+
+export function getMessage(conversationId) {
+	return function (dispatch) {
+		dispatch(getMessageAttempt());
+		return firebase.database().ref('messages').on('value', (snapshot) => {
+			console.log(snapshot)
+			dispatch(getMessageSuccess());
+		})
 	}
 }
 

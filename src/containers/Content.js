@@ -9,8 +9,9 @@ export default function Content() {
         <main className="content">
             {/* <ChatRoom></ChatRoom> */}
             {/* <Conversation></Conversation> */}
-            <Route path="/conversation/:id" exact component={ChatRoom} />
-            <Route path="/conversations/" component={Conversation} />
+            <Route path="/conversation/:id" component={ChatRoom} />
+            <Route path="/conversations" component={Conversation} />
+            <Route path="/"  exact component={Conversation} />
         </main>
     )
 }

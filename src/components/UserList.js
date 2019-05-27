@@ -36,7 +36,6 @@ class UserList extends Component {
     }
 
     render() {
-        console.log(this.props.users);
         const users = this.props.users  ? this.userList() : 'loading';
         return (
             <div className="user-list">
