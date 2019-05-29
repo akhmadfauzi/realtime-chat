@@ -10,7 +10,12 @@
     display: flex;
     flex: 1 1 50px;
     height: 10%;
-    width: 100%;
+    width: 98%;
+    background: $secondaryChat;
+    padding: .5% .5% .5% 1%;
+    justify-content: center;
+    align-items: center;
+    border-radius: 5px;
   }
 
   &__body {

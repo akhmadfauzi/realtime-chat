@@ -43,9 +43,9 @@ export const sendMessageAttempt = () => ({
 });
 
 export const SEND_MESSAGE_SUCCESS = 'SEND_MESSAGE_SUCCESS';
-export const sendMessageSuccess = () => ({
-	type: SEND_MESSAGE_SUCCESS
-
+export const sendMessageSuccess = (sender, msgUid) => ({
+	type: SEND_MESSAGE_SUCCESS,
+	payload:{sender: sender, messageid:msgUid}
 });
 
 export const GET_MESSAGE_ATTEMPT = 'GET_MESSAGE_ATTEMPT';
@@ -99,14 +99,17 @@ export function sendMessage(sender, text) {
 	return function (dispatch) {
 		dispatch(sendMessageAttempt());
 
-		return firebase.database().ref('messages').push()
-			.set({
+		const newMessageList =  firebase.database().ref('messages');
+		const newMessageRef = newMessageList.push();
+			newMessageRef.set({
 				text: text,
 				user_id: sender,
 				timestamps: new Date().getTime(),
 				coversation_id: 1
 			}, () => {
-				dispatch(sendMessageSuccess());
+				const url = newMessageRef.toString();
+				const uid = url.substr(url.lastIndexOf('/')+1);
+				dispatch(sendMessageSuccess(sender, uid));
 			});
 	}
 }

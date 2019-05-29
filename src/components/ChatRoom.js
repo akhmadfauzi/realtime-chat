@@ -10,48 +10,50 @@ class ChatRoom extends Component {
 
 	onInputHandler(e) {
 		const target = e.target;
-		if (target.value !== '') {
-			target.style.height = '20px';
-			target.setAttribute('style', 'height:' + target.scrollHeight + 'px !important;')
+		this.resizeTextInput(target);
+
+	}
+
+	resizeTextInput(element) {
+		if (element.value !== '') {
+			element.style.height = '20px';
+			element.setAttribute('style', 'height:' + element.scrollHeight + 'px !important;')
 		} else {
-			target.style.height = 'auto';
-			target.setAttribute('style', 'height:20px !important;')
+			element.style.height = 'auto';
+			element.setAttribute('style', 'height:20px !important;')
 		}
 	}
 
 	getName(id) {
-		// console.log(this.props.users[id].username)
-		// let users = ["Barry Fleming", "Ikra Carrillo", "Leanna Orr", "Hammad Garza", "Zarah Burrows", "Harlee Gallagher", "Bert Brown", "Felicity Herrera", "Hailie Wise", "Andreas Wilkinson"];
-		// return users[id];
 		return this.props.users[id].username;
 	}
 
 	participationCheker(sender, receiver) {
-		firebase
-			.database()
-			.ref('participants/' + sender)
-			.once('value', (snapshot) => {
-				return snapshot.val()
-			})
-			.then(senderSnapshot => {
-				firebase.database()
-					.ref('participants/' + receiver)
-					.once('value', (receiverSnapshot) => {
-						const sender = senderSnapshot.val();
-						const receiver = receiverSnapshot.val();
-						if (!sender || !receiver) {
-							// create new conversation
-							// with participants of these guy
-						}
-					})
-			})
+		const senderRef = firebase.database().ref('participants/' + sender);
+		const senderData = senderRef.once('value', snapshot => snapshot.val());
+		senderData.then(senderSnapshot => {
+			firebase.database()
+				.ref('participants/' + receiver)
+				.once('value', (receiverSnapshot) => {
+					const sender = senderSnapshot.val();
+					const receiver = receiverSnapshot.val();
+					if (!sender || !receiver) {
+						// Generate new participation on a conversation 
+						// for these guys
+						firebase.database().ref('participants').push().set({
+
+						})
+					}
+				})
+		})
 	}
 
 	onSubmitHandler() {
 		const text = document.getElementById('text');
 		const sender = JSON.parse(window.sessionStorage.getItem('loggedUser'));
 		const receiver = this.props.match.params.id;
-		this.participationCheker(sender.username, receiver)
+		// this.participationCheker(sender.username, receiver)
+		this.props.sendMessage(sender.username, text.value);
 		text.value = '';
 	}
 
@@ -64,8 +66,20 @@ class ChatRoom extends Component {
 
 
 	getChatMessages() {
-		return '';
-		//<ChatMessage isSender={false} text="lorem ipsum"></ChatMessage>
+		let messageList = [];
+		const activeChat = this.props.activeChat;
+		const messages = activeChat.messages;
+		
+		for (const key in messages) {
+			const isSender = this.props.loggedUser.username === messages[key].sender;
+			messageList = [...messageList, <ChatMessage key={messages[key].messageId} isSender={isSender} text={messages[key].messageId}></ChatMessage>]
+		}
+
+		
+
+		return messageList;
+
+		
 	}
 
 	render() {
@@ -96,7 +110,8 @@ class ChatRoom extends Component {
 
 const mapStateToProps = (state) => ({
 	loggedUser: state.user ? state.user : {},
-	users: state.users ? state.users : {}
+	users: state.users ? state.users : {},
+	activeChat: state.currentConversation ? state.currentConversation : {}
 })
 
 const mapDispatchToProps = {

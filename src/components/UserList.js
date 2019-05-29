@@ -29,7 +29,7 @@ class UserList extends Component {
         const loggedUser = this.props.loggedUser;
         for (const key in users) {
             if(loggedUser.username !== users[key].username){
-                profile = [...profile,(<UserListItem key={users[key].id} id={users[key].id} name={users[key].username} status={users[key].online}></UserListItem>)]
+                profile = [...profile,(<UserListItem key={users[key].username} id={users[key].id} name={users[key].username} status={users[key].online}></UserListItem>)]
             }
         }
         return profile;
