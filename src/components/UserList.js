@@ -6,10 +6,13 @@ import '../styles/user-list.scss';
 import { fetchUsers } from '../redux/actions';
 
 const loggedUser = window.sessionStorage.getItem('loggedUser');
-const mapStateToProps = (state) => ({
-    users: state.users ? state.users : {},
-    loggedUser: state.user ? state.user : (loggedUser ? JSON.parse(loggedUser) : {})
-})
+const mapStateToProps = (state) => {
+	const main = state.main;
+	return ({
+		users: main.users ? main.users : {},
+		loggedUser: main.user ? main.user : (loggedUser ? JSON.parse(loggedUser) : {})
+	})
+}
 
 const mapDispatchToProps = {
     fetchUsers

@@ -1,6 +1,5 @@
 import '../styles/login.scss';
 import React, { Component } from 'react';
-import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import { login } from '../redux/actions';
 class Login extends Component {

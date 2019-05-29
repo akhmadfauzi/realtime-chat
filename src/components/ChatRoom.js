@@ -14,6 +14,17 @@ class ChatRoom extends Component {
 
 	}
 
+	componentDidMount() {
+		console.log('Mounted')
+	}
+	componentDidUpdate() {
+		// Check sender and receiver
+		const sender = JSON.parse(window.sessionStorage.getItem('loggedUser'));
+		const receiver = this.props.match.params.id;
+
+		this.participationCheker(sender.username, receiver);
+	}
+
 	resizeTextInput(element) {
 		if (element.value !== '') {
 			element.style.height = '20px';
@@ -28,7 +39,8 @@ class ChatRoom extends Component {
 		return this.props.users[id].username;
 	}
 
-	participationCheker(sender, receiver) {
+
+	backup(sender, receiver) {
 		const senderRef = firebase.database().ref('participants/' + sender);
 		const senderData = senderRef.once('value', snapshot => snapshot.val());
 		senderData.then(senderSnapshot => {
@@ -48,13 +60,95 @@ class ChatRoom extends Component {
 		})
 	}
 
-	onSubmitHandler() {
-		const text = document.getElementById('text');
+	matching(sender, receiver) {
+		for (let i = 0; i < sender.length; i++) {
+			for (let j = 0; j < receiver.length; j++) {
+				if (sender[i].coversation_id === receiver[j].coversation_id) {
+					return sender[i].coversation_id;
+				}
+			}
+
+		}
+	}
+
+	participationCheker(sender, receiver) {
+		const messagesRef = firebase.database().ref('messages');
+		const conversationsRef = firebase.database().ref('conversations');
+		const participantsRef = firebase.database().ref('participants');
+		const messages = participantsRef.once('value', function (snapshot) {
+			return snapshot.val();
+		});
+		messages.then(snapshot => {
+			console.log('%c starting point', 'color:red')
+			console.log(`%c ${sender} | ${receiver}`, 'color:green')
+			let senderMsgs = [], receiverMsgs = [];
+			snapshot.forEach(function (child) {
+				const data = child.val();
+				if (data.user_id === sender) {
+					senderMsgs.push(data);
+				}
+
+				if (data.user_id === receiver) {
+					receiverMsgs.push(data);
+				}
+			});
+
+			const matched = this.matching(senderMsgs, receiverMsgs);
+			const hasConversation = matched ? true : false;
+			if (hasConversation) {
+				// ada pembicaraan
+				console.log('lanjut ngobrol')
+			}else{
+				//buat baru
+				console.log('Buat obrolan baru')
+			}
+		});
+		// const conversationPush = conversations.push();
+		// const conversationId = conversationPush.toString().substring(conversationPush.toString().lastIndexOf('/')+1);
+		// conversationPush.set({
+		// 	"typr":"conversation"
+		// })
+		// const participants = firebase.database().ref('participants');
+		// const participant_list = participants.push();
+		// participant_list.set({
+		// 	"conversation_id": conversationId,
+		// 	"user_id": sender.username
+		// })
+
+		// const siSender = messages.once('value', (snapshot) => {
+		// 	return snapshot.val();
+		// });
+
+		// siSender.then(snap=>{
+		// 	console.log(snap.val());
+		// })
+
+	}
+
+	onTextEnter(e) {
+		const target = e.target;
+		const key = e.charCode ? e.charCode : e.keyCode;
+		// Uncomment this later
 		const sender = JSON.parse(window.sessionStorage.getItem('loggedUser'));
 		const receiver = this.props.match.params.id;
-		// this.participationCheker(sender.username, receiver)
-		this.props.sendMessage(sender.username, text.value);
+		if (key === 13 && e.target.nodeName === 'TEXTAREA') {
+			// const text = target.value;
+			this.participationCheker(sender.username, receiver);
+			target.value = '';
+		}
+	}
+
+	onSubmitHandler(e) {
+		// Uncomment this later
+		// const sender = JSON.parse(window.sessionStorage.getItem('loggedUser'));
+		// const receiver = this.props.match.params.id;
+
+		const text = document.getElementById('text');
+		console.log(text.value)
 		text.value = '';
+
+		// this.participationCheker(sender.username, receiver)
+		// this.props.sendMessage(sender.username, text.value);
 	}
 
 	getMessages() {
@@ -69,17 +163,12 @@ class ChatRoom extends Component {
 		let messageList = [];
 		const activeChat = this.props.activeChat;
 		const messages = activeChat.messages;
-		
+
 		for (const key in messages) {
 			const isSender = this.props.loggedUser.username === messages[key].sender;
 			messageList = [...messageList, <ChatMessage key={messages[key].messageId} isSender={isSender} text={messages[key].messageId}></ChatMessage>]
 		}
-
-		
-
 		return messageList;
-
-		
 	}
 
 	render() {
@@ -96,7 +185,7 @@ class ChatRoom extends Component {
 				<div className="chat-room__footer">
 					<div className="text-editor">
 						<div className="text-editor__left">
-							<textarea id="text" onInput={this.onInputHandler.bind(this)}></textarea>
+							<textarea id="text" onInput={this.onInputHandler.bind(this)} onKeyPress={this.onTextEnter.bind(this)}></textarea>
 						</div>
 						<div className="text-editor__right">
 							<button onClick={this.onSubmitHandler.bind(this)}><FontAwesomeIcon icon="paper-plane" /></button>
@@ -108,11 +197,14 @@ class ChatRoom extends Component {
 	}
 }
 
-const mapStateToProps = (state) => ({
-	loggedUser: state.user ? state.user : {},
-	users: state.users ? state.users : {},
-	activeChat: state.currentConversation ? state.currentConversation : {}
-})
+const mapStateToProps = (state) => {
+	const main = state.main;
+	return ({
+		loggedUser: main.user ? main.user : {},
+		users: main.users ? main.users : {},
+		activeChat: main.currentConversation ? main.currentConversation : {}
+	})
+}
 
 const mapDispatchToProps = {
 	sendMessage
