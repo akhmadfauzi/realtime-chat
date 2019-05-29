@@ -61,10 +61,11 @@ class ChatRoom extends Component {
 	}
 
 	matching(sender, receiver) {
+		console.log(sender, receiver);
 		for (let i = 0; i < sender.length; i++) {
 			for (let j = 0; j < receiver.length; j++) {
-				if (sender[i].coversation_id === receiver[j].coversation_id) {
-					return sender[i].coversation_id;
+				if (sender[i].conversation_id === receiver[j].conversation_id) {
+					return sender[i].conversation_id;
 				}
 			}
 
@@ -75,12 +76,11 @@ class ChatRoom extends Component {
 		const messagesRef = firebase.database().ref('messages');
 		const conversationsRef = firebase.database().ref('conversations');
 		const participantsRef = firebase.database().ref('participants');
-		const messages = participantsRef.once('value', function (snapshot) {
+		const participantList = participantsRef.once('value', function (snapshot) {
 			return snapshot.val();
 		});
-		messages.then(snapshot => {
-			console.log('%c starting point', 'color:red')
-			console.log(`%c ${sender} | ${receiver}`, 'color:green')
+		participantList.then(snapshot => {
+			console.log(`%c ${sender} | %c ${receiver}`, 'color:green', 'color:yellow')
 			let senderMsgs = [], receiverMsgs = [];
 			snapshot.forEach(function (child) {
 				const data = child.val();
@@ -103,25 +103,6 @@ class ChatRoom extends Component {
 				console.log('Buat obrolan baru')
 			}
 		});
-		// const conversationPush = conversations.push();
-		// const conversationId = conversationPush.toString().substring(conversationPush.toString().lastIndexOf('/')+1);
-		// conversationPush.set({
-		// 	"typr":"conversation"
-		// })
-		// const participants = firebase.database().ref('participants');
-		// const participant_list = participants.push();
-		// participant_list.set({
-		// 	"conversation_id": conversationId,
-		// 	"user_id": sender.username
-		// })
-
-		// const siSender = messages.once('value', (snapshot) => {
-		// 	return snapshot.val();
-		// });
-
-		// siSender.then(snap=>{
-		// 	console.log(snap.val());
-		// })
 
 	}
 
