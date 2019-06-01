@@ -58,6 +58,17 @@ export const getMessageSuccess = () => ({
 	type: GET_MESSAGE_SUCCESS
 });
 
+export const SET_CURRENT_CONVERSATION = 'SET_CURRENT_CONVERSATION';
+export const setCurrentConversation = (conversation) => ({
+	type: SET_CURRENT_CONVERSATION,
+	conversation
+});
+
+export const REMOVE_CURRENT_CONVERSATION = 'REMOVE_CURRENT_CONVERSATION';
+export const removeCurrentConversation = () => ({
+	type: REMOVE_CURRENT_CONVERSATION
+});
+
 
 
 export function login(username) {
@@ -81,7 +92,6 @@ export function login(username) {
 export function fetchLoggedUser(username) {
 	return function (dispatch) {
 		dispatch(requestLoggedUser());
-
 		return firebase.database().ref('users/' + username)
 			.once('value')
 			.then((snapshot) => {

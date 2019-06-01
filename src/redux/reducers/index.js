@@ -41,6 +41,24 @@ export function mainReducer(state = initialState, action) {
 					...state
 				}
 			}
+		case act.SET_CURRENT_CONVERSATION:
+			{
+				const { conversationId } = action.conversation;
+				return {
+					...state,
+					"currentConversation": {
+						...state.currentConversation,
+						conversationId: conversationId
+					}
+				}
+			}
+		case act.REMOVE_CURRENT_CONVERSATION:
+			{
+				return {
+					...state,
+					"currentConversation": null
+				}
+			}
 		case act.SEND_MESSAGE_SUCCESS:
 			{
 				const { sender, messageid } = action.payload;

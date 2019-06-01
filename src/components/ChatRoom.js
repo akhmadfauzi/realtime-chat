@@ -5,24 +5,30 @@ import '../styles/chat-room.scss';
 import ChatMessage from './ChatMessage';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import UserProfile from '../components/UserProfile';
-import { sendMessage } from '../redux/actions';
+import { sendMessage,removeCurrentConversation, setCurrentConversation } from '../redux/actions';
 class ChatRoom extends Component {
-
+	constructor(props){
+		super(props);
+		this.loggedUser = JSON.parse(window.sessionStorage.getItem('loggedUser'));
+	}
 	onInputHandler(e) {
 		const target = e.target;
 		this.resizeTextInput(target);
+	}
 
+	setReceiver(){
+		this.sender = this.loggedUser;
+		this.receiver = this.props.match.params.id;
 	}
 
 	componentDidMount() {
-		console.log('Mounted')
+		this.setReceiver();
+		this.participationCheker(this.sender.username, this.receiver);
+		
 	}
 	componentDidUpdate() {
-		// Check sender and receiver
-		const sender = JSON.parse(window.sessionStorage.getItem('loggedUser'));
-		const receiver = this.props.match.params.id;
-
-		this.participationCheker(sender.username, receiver);
+		this.setReceiver();
+		this.participationCheker(this.sender.username, this.receiver);
 	}
 
 	resizeTextInput(element) {
@@ -60,8 +66,7 @@ class ChatRoom extends Component {
 		})
 	}
 
-	matching(sender, receiver) {
-		console.log(sender, receiver);
+	getConversationId(sender, receiver) {
 		for (let i = 0; i < sender.length; i++) {
 			for (let j = 0; j < receiver.length; j++) {
 				if (sender[i].conversation_id === receiver[j].conversation_id) {
@@ -80,7 +85,6 @@ class ChatRoom extends Component {
 			return snapshot.val();
 		});
 		participantList.then(snapshot => {
-			console.log(`%c ${sender} | %c ${receiver}`, 'color:green', 'color:yellow')
 			let senderMsgs = [], receiverMsgs = [];
 			snapshot.forEach(function (child) {
 				const data = child.val();
@@ -93,13 +97,17 @@ class ChatRoom extends Component {
 				}
 			});
 
-			const matched = this.matching(senderMsgs, receiverMsgs);
-			const hasConversation = matched ? true : false;
+			const conversationId = this.getConversationId(senderMsgs, receiverMsgs);
+			const hasConversation = conversationId ? true : false;
 			if (hasConversation) {
 				// ada pembicaraan
-				console.log('lanjut ngobrol')
+				if(!this.props.activeChat.conversationId){
+					this.props.setCurrentConversation({conversationId: conversationId});
+				}
 			}else{
-				//buat baru
+				if(this.props.activeChat.conversationId){
+					this.props.removeCurrentConversation();
+				}
 				console.log('Buat obrolan baru')
 			}
 		});
@@ -188,7 +196,9 @@ const mapStateToProps = (state) => {
 }
 
 const mapDispatchToProps = {
-	sendMessage
+	sendMessage,
+	setCurrentConversation,
+	removeCurrentConversation
 }
 
 export default connect(mapStateToProps, mapDispatchToProps)(ChatRoom)
